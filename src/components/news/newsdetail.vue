@@ -1,7 +1,7 @@
 <template>
-  <div class="newsdetail">
+  <div class="newsdetail" v-if="newlists">
     <div class="header border-px">
-    <span @click="exitss">返回</span>
+    <span @click="exitss(newlists)">返回</span>
     <span class="type">{{newlists.category}}</span>
   </div>
     <div class="title">
@@ -9,7 +9,7 @@
       <div class="name-bottom">
         <span class="author">{{newlists.author_name}}</span>
         <span class="date">{{newlists.date}}</span>
-        <div class="btn" @click="btnschange">{{!newlists.shows?"+关注":newlists.shows==1?"已关注":"+关注"}}</div>
+        <div class="btn" @click="btnschange(newlists)">{{!newlists.shows?"+关注":newlists.shows==1?"已关注":"+关注"}}</div>
       </div>
     </div>
     <div class="imgs">
@@ -17,6 +17,7 @@
       <img :src="newlists.thumbnail_pic_s02" alt="">
       <img :src="newlists.thumbnail_pic_s03" alt="">
     </div>
+
   </div>
 </template>
 <script>
@@ -25,28 +26,40 @@
     components: {scroll},
     data(){
       return {
-        newlists: this.$store.state.newlist
+      }
+    },
+    computed:{
+      newlists(){
+        let Id=this.$route.params.Id
+        let newslist=this.$store.state.newlist
+        for(let i=0;i<newslist.length;i++){
+          if(newslist[i].author_name==Id){
+            return newslist[i]
+          }
+        }
       }
     },
     methods: {
       //路由到new界面
-      exitss(){
+      exitss(item){
         this.$router.back(-1)
+        if(item.shows==0){
+          let newslist=this.$store.state.newlist
+          for(let i=0;i<newslist.length;i++){
+            if(newslist[i].author_name==item.author_name){
+              newslist.splice(i,1,)
+            }
+          }
+        }
       },
       // 关注
-      btnschange(){
-        let arr = this.$store.state.follow.filter(function (item) {
-          return item.date == this.newlists.date
-        })
-        if (arr.length == 0) {
-          this.$set(this.newlists, 'shows', 1)
-          this.$store.state.follow.push(this.newlists)
-        } else {
-          this.$set(this.newlists, 'shows', 0)
-          this.$store.state.follow.splice(this.$store.state.follow.indexOf(this.newlists), 1)
+      btnschange(item){
+        if(!item.shows){
+          this.$set(item,"shows",1)
+        }else {
+          this.$set(item,"shows",0)
+
         }
-        /*console.log(this.newlists.shows)
-        console.log(this.$store.state.follow)*/
 
       }
     }
@@ -88,7 +101,7 @@
           font-size 10px
         .btn
           position absolute
-          bottom 20px
+          bottom 0px
           right 10px
           font-size 15px
           text-align center

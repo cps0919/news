@@ -76,9 +76,9 @@
     .scroll
       position absolute
       top 90px
-      bottom 41px
+      height 600px
       overflow hidden
       .newslist
-        position: relative
+        position relative
         padding-bottom 50px
 </style>

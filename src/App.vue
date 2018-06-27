@@ -1,20 +1,6 @@
 <template>
   <div id="app">
-    <!--<div class="tab">
-      <div class="tab-item">
-        <router-link to="/news">新闻</router-link>
-      </div>
-      <div class="tab-item">
-        <router-link to="/movies">天气</router-link>
-      </div>
-      <div class="tab-item">
-        <router-link to="/Recommend">推荐</router-link>
-      </div>
-      <div class="tab-item">
-        <router-link to="/myself">我的</router-link>
-      </div>
-    </div>-->
-      <router-view ></router-view>
+        <router-view ></router-view>
   </div>
 </template>
 
@@ -25,6 +11,8 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
+  #app
+    overflow hidden
  /* .tab
     position absolute
     z-index 100

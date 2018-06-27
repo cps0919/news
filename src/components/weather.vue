@@ -1,6 +1,5 @@
 <template>
   <div class="movies">
-    <routers></routers>
     <div class="header" @click="tabss">
       <span class="name" >{{weathers.citys}}</span>
       <div class="selects" v-show="tabs==false">广州</div>
@@ -56,6 +55,8 @@
         </div>
       </div>
     </div>
+    <routers></routers>
+
   </div>
 </template>
 
@@ -155,7 +156,7 @@
         font-size 20px
         font-weight 700
       .temperature
-        font-size 100px
+        font-size 70px
         font-family 'Adobe 黑体 Std R'
         font-weight 700
       .wind

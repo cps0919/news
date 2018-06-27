@@ -26,7 +26,7 @@
       },
       computed:{
         promt(){
-        return this.$store.state.follow.length
+        return this.$store.state.newlist.length
         }
       }
     }

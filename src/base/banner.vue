@@ -1,7 +1,7 @@
 <template>
   <div class="banner">
     <ul class="uls" ref="uls">
-      <li class="lis" v-for="item,index in imgs1" :key="">
+      <li class="lis" v-for="item,index in imgs1" :key="" ref="lis">
         <img :src="item" alt="">
       </li>
     </ul>
@@ -37,12 +37,14 @@
     mounted(){
         // 获取ul元素
       let uls = this.$refs.uls
+      let lis = this.$refs.lis[0]
+      let lisheight = lis.offsetWidth
       uls.style.width = uls.offsetWidth * (this.imgs.length+1) + 'px'
       let index = 0
       let _this = this
       setInterval(function () {
         index++
-        uls.style.transform = `translate(${-index * 375}px)`
+        uls.style.transform = `translate(${-index * lisheight}px)`
         uls.style.transition = 'all 1s linear'
         if (index >= _this.imgs.length+1) {
           index = 0
@@ -66,10 +68,10 @@
       height 100%
       .lis
         float left
-        width 375px
+        width 414px
         height 100%
         img
-          width 375px
+          width inherit
           height inherit
     .navi
       position absolute

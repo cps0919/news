@@ -21,6 +21,7 @@
         </div>
       </li>
     </ul>
+    <div class="nulls" v-show="follows.length==0">没有更多内容哦！</div>
   </div>
 </template>
 <script>
@@ -34,24 +35,22 @@
     },
     computed:{
       follows(){
-          return  this.$store.state.follow
+          return  this.$store.state.newlist
       }
     },
     methods:{
         // 清空follows
       emptys(){
-        this.$store.state.follow=[]
+        this.$store.state.newlist=[]
         /*console.log(this.$store.state.follow)*/
       },
       // 调用父组件shows函数，返回上一级
       exitss(nul){
-        this.$emit('shows', nul)
+        this.$router.back(-1)
       },
       // 进入详情页
       enterdetail(item){
-        this.$store.state.newlist=item
-        console.log(this.$store.state.newlist)
-        this.$router.push("/newsdetail")
+        this.$router.push(`/newsdetail/${item.author_name}`)
       },
     }
   }
@@ -59,6 +58,9 @@
 <style lang="stylus" scoped>
   @import "./../../commons/styl/base.styl"
   .newslist
+    .nulls
+      width 100%
+      text-align center
     .header
       width 100%
       line-height 60px

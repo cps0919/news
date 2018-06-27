@@ -1,6 +1,5 @@
 <template>
   <div class="Recommend">
-    <routers></routers>
     <eleheader></eleheader>
     <scroll
       class="scroll"
@@ -13,6 +12,7 @@
         <newslist :types="'fire'"></newslist>
       </div>
     </scroll>
+    <routers></routers>
   </div>
 </template>
 <script>
@@ -70,6 +70,7 @@
       position absolute
       top 50px
       bottom 50px
+      height 650px
       overflow hidden
       .newslist
         position relative

@@ -7,6 +7,7 @@ import myself from "../components/myself"
 import newsdetail from "../components/news/newsdetail.vue"
 import suitable from "../components/weather/suitable.vue"
 import search from "../components/searchs.vue"
+import follow from "../components/myself/follow"
 
 Vue.use(Router)
 
@@ -27,7 +28,7 @@ export default new Router({
       component:myself
     },
     {
-      path:"/newsdetail",
+      path:"/newsdetail/:Id",
       component:newsdetail
     },
     {
@@ -37,6 +38,10 @@ export default new Router({
     {
       path:"/suitable",
       component:suitable
+    },
+    {
+      path:"/follow",
+      component:follow
     }
   ]
 })

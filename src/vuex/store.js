@@ -6,7 +6,7 @@ export default new Vuex.Store({
   state:{
     // 收藏数据控制
     follow:[],
-    newlist:{},
+    newlist:[],
     suitable:[]
   },
   mutations:{

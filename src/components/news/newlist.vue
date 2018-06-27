@@ -35,9 +35,17 @@
     methods: {
       // 进入详情页
       enterdetail(item){
-        this.$store.state.newlist=item
+        /*console.log(item.author_name)*/
+        /*this.$store.state.newlist.push(item)*/
+        let newlist=this.$store.state.newlist
+        let news=newlist.forEach(function (items) {
+          return items.author_name==item.author_name
+        })
+        if(news==null){
+          newlist.push(item)
+        }
         /*console.log(this.$store.state.newlist)*/
-        this.$router.push("/newsdetail")
+        this.$router.push(`/newsdetail/${item.author_name}`)
       },
       //news列表传值
       news(){

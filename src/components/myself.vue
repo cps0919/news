@@ -36,9 +36,6 @@
         </Li>
       </ul>
     </div>
-    <div class="component" v-show="shows==1">
-      <follow @shows="showschange"></follow>
-    </div>
     <div class="component" v-show="shows==4">
       <mobile @shows="showschange"></mobile>
     </div>
@@ -61,36 +58,40 @@
   import zipCode from "./myself/zipCode.vue"
   import widgets from "./myself/widgets"
   import mobile from "./myself/mobile.vue"
-  import mobileLocation from  "./myself/mobileLocation.vue"
+  import mobileLocation from "./myself/mobileLocation.vue"
+
   export default {
     name: "myself",
-    components: {mobile,zipCode,loves,mobileLocation,routers,follow},
+    components: {mobile, zipCode, loves, mobileLocation, routers, follow},
     data() {
       return {
-          // 控制收藏小图标
+        // 控制收藏小图标
 
         shows: null,
         info: ['全国邮编查询', '历史/收藏', '爱情术语', '身份证查询', '号码吉凶', '号码归属地', '汇率']
       }
     },
-    computed:{
-      promt(){
-          return this.$store.state.follow.length
+    computed: {
+      promt() {
+        return this.$store.state.newlist.length
       }
     },
     methods: {
-        // 子组件改变shows的值，并返回myself界面
-        showschange(shows){
-            this.shows=shows
+      // 子组件改变shows的值，并返回myself界面
+      showschange(shows) {
+        this.shows = shows
 
-        },
+      },
       //获取点击对应index
-      tabs(item, index){
-          this.shows=index
+      tabs(item, index) {
+        if(index==1){
+          this.$router.push("/follow")
+        }
+        this.shows = index
         /*console.log(index)*/
-        if(index==2){
-            console.log(index)
-          if(this.$refs.love.datas){
+        if (index == 2) {
+          console.log(index)
+          if (this.$refs.love.datas) {
             this.$refs.love.datas()
             /*console.log(this.$refs.love)*/
           }
@@ -150,7 +151,7 @@
             line-height 30px
             color red
             text-align center
-            background rgba(7,17,27,0.1)
+            background rgba(7, 17, 27, 0.1)
             border-radius 20px
           &:nth-child(2)
             margin-bottom 10px
